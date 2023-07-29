@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+- 获取iOS设备启动时间、获取iOS系统更新时间、获取UA、获取IDFA、获取设备编码、获取IP，目前获取到的值不准确

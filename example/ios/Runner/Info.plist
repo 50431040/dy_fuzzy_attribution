@@ -45,6 +45,8 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>请允许获取并使用您的IDFA</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 </dict>

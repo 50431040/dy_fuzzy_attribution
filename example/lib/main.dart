@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:dy_fuzzy_attribution/dy_fuzzy_attribution.dart';
 
 void main() {
@@ -16,35 +13,45 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _dyFuzzyAttributionPlugin = DyFuzzyAttribution();
+  /// 获取启动时间
+  getIOSStartTime() async {
+    var time = await DyFuzzyAttribution().getIOSStartTime();
+    debugPrint("getIOSStartTime -> $time");
+  }
+
+  /// 获取系统更新时间
+  getIOSSystemUpdateTime() async {
+    var time = await DyFuzzyAttribution().getIOSSystemUpdateTime();
+    debugPrint("getIOSSystemUpdateTime -> $time");
+  }
+
+  /// 获取UA
+  getUserAgent() async {
+    var userAgent = await DyFuzzyAttribution().getUserAgent();
+    debugPrint("getUserAgent -> $userAgent");
+  }
+
+  /// 获取IDFA
+  getIDFA() async {
+    var idfa = await DyFuzzyAttribution().getIDFA();
+    debugPrint("getIDFA -> $idfa");
+  }
+
+  /// 获取iOS设备编码
+  getPlatform() async {
+    var platform = await DyFuzzyAttribution().getPlatform();
+    debugPrint("getPlatform -> $platform");
+  }
+
+  /// 获取IP
+  getIP() async {
+    var ip = await DyFuzzyAttribution().getIP();
+    debugPrint("getIP -> $ip");
+  }
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _dyFuzzyAttributionPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
@@ -52,10 +59,36 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('demo'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: getIOSStartTime,
+              child: const Text("获取iOS设备启动时间"),
+            ),
+            ElevatedButton(
+              onPressed: getIOSSystemUpdateTime,
+              child: const Text("获取iOS更新系统时间"),
+            ),
+            ElevatedButton(
+              onPressed: getUserAgent,
+              child: const Text("获取UA"),
+            ),
+            ElevatedButton(
+              onPressed: getIDFA,
+              child: const Text("获取IDFA"),
+            ),
+            ElevatedButton(
+              onPressed: getPlatform,
+              child: const Text("获取iOS设备编码"),
+            ),
+            ElevatedButton(
+              onPressed: getIP,
+              child: const Text("获取IP"),
+            ),
+          ],
         ),
       ),
     );

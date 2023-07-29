@@ -2,14 +2,22 @@
 
 抖音模糊归因相关方案
 
-## Getting Started
+## 方法介绍
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+- getIOSStartTime
+获取iOS设备启动时间
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- getIOSSystemUpdateTime
+获取iOS系统更新时间
 
+- getUserAgent
+获取UA
+
+- getIDFA
+获取IDFA
+
+- getPlatform
+获取设备编码
+
+- getIP
+获取IP，目前获取到的值不准确
