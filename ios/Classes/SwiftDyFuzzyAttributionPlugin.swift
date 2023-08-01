@@ -4,6 +4,7 @@ import AppTrackingTransparency
 import AdSupport
 import Network
 import Foundation
+import WebKit
 
 public class SwiftDyFuzzyAttributionPlugin: NSObject, FlutterPlugin {
     
@@ -70,10 +71,8 @@ public class SwiftDyFuzzyAttributionPlugin: NSObject, FlutterPlugin {
     
     // 获取UA
     private func getUserAgent(_ result: @escaping FlutterResult) {
-        let webView = UIWebView(frame: CGRectZero)
-        let userAgent = webView.stringByEvaluatingJavaScript(from: "navigator.userAgent")
-        
-        result(userAgent)
+        let webView = WKWebView(frame: CGRectZero)
+        result(webView.value(forKey: "userAgent"));
     }
     
     private func getIDFAValue() -> String {
